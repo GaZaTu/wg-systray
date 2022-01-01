@@ -1,0 +1,7 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+  <qresource>
+    <file>res/wg-icon-32x32.png</file>
+    <file>res/wg-check-icon-32x32.png</file>
+  </qresource>
+</RCC>
