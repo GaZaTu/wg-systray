@@ -155,39 +155,6 @@ private:
   }
 };
 
-template <typename T>
-std::vector<T> readQSettingsArrayToStdVector(QSettings& settings, const QString& prefix,
-    std::function<T(QSettings&)> readValue, const std::vector<T>& defaultValue = {}) {
-  std::vector<T> data;
-
-  const int size = settings.beginReadArray(prefix);
-  for (int i = 0; i < size; i++) {
-    settings.setArrayIndex(i);
-
-    data.push_back(readValue(settings));
-  }
-  settings.endArray();
-
-  if (data.size() == 0) {
-    return defaultValue;
-  }
-
-  return data;
-}
-
-template <typename T>
-void writeQSettingsArrayFromStdVector(QSettings& settings, const QString& prefix, const std::vector<T>& data,
-    std::function<void(QSettings&, const T&)> writeValue) {
-  const int size = data.size();
-  settings.beginWriteArray(prefix, size);
-  for (int i = 0; i < size; i++) {
-    settings.setArrayIndex(i);
-
-    writeValue(settings, data[i]);
-  }
-  settings.endArray();
-}
-
 int main(int argc, char** argv) {
   QCoreApplication::setOrganizationName(PROJECT_ORGANIZATION);
   QCoreApplication::setOrganizationDomain(PROJECT_ORGANIZATION);
