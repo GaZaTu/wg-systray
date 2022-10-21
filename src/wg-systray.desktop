@@ -1,0 +1,7 @@
+[Desktop Entry]
+Exec=wg-systray
+Icon=
+Name=wg-systray
+Path=
+Terminal=False
+Type=Application
