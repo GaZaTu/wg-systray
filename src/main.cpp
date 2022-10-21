@@ -20,8 +20,8 @@ auto runWGShowInterfaces() {
   process.start("wg", {"show", "interfaces"});
   process.waitForFinished();
 
-  QString result{process.readAllStandardOutput()};
-  return result.trimmed().toStdString();
+  QString stdout{process.readAllStandardOutput()};
+  return stdout.trimmed().toStdString();
 }
 
 class App {
