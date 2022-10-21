@@ -33,12 +33,11 @@ public:
       process.start("pkexec", {"ls", "/etc/wireguard"});
       process.waitForFinished();
 
-      QString result{process.readAllStandardOutput()};
-      QStringList interfaces = result.split(QRegExp{"\\s+"});
-
-      for (auto& intf : interfaces) {
-        intf = intf.replace(".conf", "");
-      }
+      QString stdout{process.readAllStandardOutput()};
+      QStringList interfaces = stdout
+        .split(QRegExp{"\\s+"})
+        .filter(".conf")
+        .replaceInStrings(".conf", "");
 
       QSettings settings;
       settings.setValue("interfaces", interfaces);
